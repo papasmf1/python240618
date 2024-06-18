@@ -29,5 +29,8 @@ else:
     print("파일 없음")
 
 
+lst = glob.glob(r"c:\work2\*.*")
+print(lst)
+
 
 
