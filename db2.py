@@ -2,13 +2,14 @@
 import sqlite3
 
 #연결객체 리턴(메모리에서 작업) 
-con = sqlite3.connect(":memory:")
+#영구적으로 파일에 저장
+con = sqlite3.connect("sample.db")
 
 #구문을 실행할 커서 객체 리턴
 cur = con.cursor() 
 
 #테이블 생성
-cur.execute("create table PhoneBook (Name text, PhoneNum text);")
+cur.execute("create table if not exists PhoneBook (Name text, PhoneNum text);")
 
 #1건 입력 
 cur.execute("insert into PhoneBook values ('derick','010-222');")
@@ -24,13 +25,11 @@ cur.executemany("insert into PhoneBook values (?, ?);", datalist)
 
 #조회를 실행
 cur.execute("select * from PhoneBook;")
-# for row in cur:
-#     print(row[0], row[1]) 
-print("---fetchone()---")
-print(cur.fetchone())
-print("---fetchmany(2))---")
-print(cur.fetchmany(2))
-print("---fetchall()---")
-cur.execute("select * from PhoneBook;")
-print(cur.fetchall())
+for row in cur:
+    print(row[0], row[1]) 
+
+#작업을 정상적으로 완료
+con.commit() 
+con.close() 
+
 
