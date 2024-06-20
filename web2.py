@@ -4,6 +4,7 @@ import requests
 #크롤링
 from bs4 import BeautifulSoup
 
+
 url = "https://www.daangn.com/fleamarket/"
 response = requests.get(url)
 
@@ -24,11 +25,3 @@ for post in posts:
     f.write(f"{title}, {price}, {addr}\n")
 
 f.close() 
-    # <div class="card-desc">
-    #   <h2 class="card-title">아이폰 14 프로</h2>
-    #   <div class="card-price ">
-    #     270,000원
-    #   </div>
-    #   <div class="card-region-name">
-    #     경기도 고양시 일산서구 탄현동
-    #   </div>
